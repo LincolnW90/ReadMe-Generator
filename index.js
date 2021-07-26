@@ -85,7 +85,7 @@ const promptQuestions = answers => {
         {   //intallation instructions
             type:'input',
             name:'installation',
-            message:'Does you project have special installation instructions?'
+            message:'Enter any special installation instructions'
         },
         {   //usage information
             type:'input',
@@ -105,7 +105,7 @@ const promptQuestions = answers => {
         },
         {   //licenses
             type: 'checkbox',
-            name: 'licenses',
+            name: 'license',
             message: 'Select which license is in use',
             choices: ['Apache-2.0', 'GNU-GPLv3','ISC', 'MIT',  'MPL-2.0', 'other'],
             when: ({confirmLicense}) => confirmLicense
@@ -118,7 +118,7 @@ promptQuestions()
 .then(function writeToFile(fileContent){
     var formatReadMe = createFile(fileContent);
 
-    fs.writeFileSync('./dist/Created_ReadMe.md', formatReadMe);
+    fs.writeFileSync('./dist/README.md', formatReadMe);
 })
 .catch(err => {
     console.log(err);
