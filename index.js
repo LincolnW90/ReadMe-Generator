@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-const generatePage = require('./utils/generatePage');
-const {writeFile, createFile} = require('./utils/generatePage');
+const createFile = require('./utils/generatePage');
+const fs = require('fs');
 
 
 // get author information
@@ -111,10 +111,15 @@ const promptQuestions = answers => {
             when: ({confirmLicense}) => confirmLicense
         },
     ])
-
-
 };
 
 
 promptQuestions()
-    .then(writeFile)
+.then(function writeToFile(fileContent){
+    var formatReadMe = createFile(fileContent);
+
+    fs.writeFileSync('./dist/Created_ReadMe.md', formatReadMe);
+})
+.catch(err => {
+    console.log(err);
+});

@@ -1,45 +1,63 @@
 const fs = require('fs');
 
-// if table of contents needed
-const createTable = () =>{
-    if (!answers.confirmTable){
-        return ''
-    }
-    return `
-    ## Table of contents
-    
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Credits](#credits)
-    * [Tests](#tests)
-    * [License](#license)
-    * [Questions](#questions)
-    * `
-};
-
-// generate license badge
-const badgeMaker = () => {
-    if (!projectData.confirmLicense || (projectData.license = 'other')){
-        return ''
-    }
-    return `![License](https://img.shields.io/static/v1?label=License&message=${projectData.license}&color=blue)`
-} 
-
 // begin page data creation
-const writeFile = fileContent => {
+function createFile(fileContent) {
+
+    // if table of contents needed
+    const createTable = () =>{
+        if (!answers.confirmTable){
+            return ''
+        }
+        return `
+        ## Table of contents
+        
+        * [Installation](#installation)
+        * [Usage](#usage)
+        * [Tests](#tests)
+        * [License](#license)
+        * [Questions](#questions)
+        * [Credits](#credits)
+        `
+    };
+
+    // generate license badge
+    const badgeMaker = () => {
+        if (!answers.confirmLicense || (answers.license = 'other')){
+            return ''
+        }
+        return `![License](https://img.shields.io/static/v1?label=License&message=${answers.license}&color=blue)`
+    } 
+
     return `
     ${badgeMaker}
 
-    #${projectData.title} ReadMe
+    #${answers.title} ReadMe
 
     ## Description
 
-    ${projectData.description}
+    ${answers.description}
     
     ${createTable}
-    
 
+    ## Installation
+    ${answers.installation}
+
+    ## Usage
+    ${answers.usage}
+
+    ## Tests
+    ${answers.tests}
+
+    ## Licenses
+    ${answers.licenses}
+
+    ## Questions
+    Github username: ${answers.userName}
+    Email: ${answers.email}
+
+    ## Contributors/technology
+    ${answers.contributor}
     `
 };
 
-module.exports = writeFile;
+module.exports = createFile;
