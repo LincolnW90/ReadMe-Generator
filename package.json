@@ -4,6 +4,7 @@
   "description": "Generate basic professional Readme markdown file",
   "main": "index.js",
   "dependencies": {
+    "fs": "0.0.1-security",
     "inquirer": "^8.1.2"
   },
   "devDependencies": {

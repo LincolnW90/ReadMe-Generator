@@ -1,9 +1,12 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
+const generatePage = require('./utils/generatePage');
+const {writeFile, createFile} = require('./utils/generatePage');
 
-const promptUser = answers => {
+
+// get author information
+const promptQuestions = answers => {
     // create answers array if none exixts
-    if (!answers) {
+    if (!answers){
         answers = [];
     }
     console.log('Welcome to the Readme Generator')
@@ -35,6 +38,18 @@ const promptUser = answers => {
                 }
             }
         },
+        {   //contributors Y/N
+            type: 'confirm',
+            name: 'confirmContributor',
+            message: 'Do you have any contributors or technology to credit?',
+            default: false
+        },
+        {   //contributor name
+            type: 'input',
+            name: 'contributor',
+            message: 'enter contributor GitHub username or technology used (required)',
+            when: ({confirmContributor}) => confirmContributor,
+        },        
         {   // Project title
             type:'input',
             name: 'title',
@@ -77,36 +92,29 @@ const promptUser = answers => {
             name:'usage',
             message: 'Enter any usage instructions or links to instructions'
         },
-        {   //contributor Y/N
-            type: 'confirm',
-            name: 'confirmContributor',
-            message: 'Do you have any contributors to mention?',
-            default: false
-        },
-        {   //contributor name
-            type: 'input',
-            name: 'contributor',
-            message: 'enter contributors names or GitHub accounts (required)',
-            when: ({confirmContributor}) => confirmContributor,
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Enter contributor information');
-                    return false;
-                }
-            }
-        },
         {   //tests
             type: 'input',
             name: 'tests',
             message: 'Enter any special test info or instructions'
         },
+        {   //licenses Y/N
+            type:'confirm',
+            name:'confirmLicense',
+            message:'Would you like to add licences?',
+            default: true
+        },
         {   //licenses
             type: 'checkbox',
             name: 'licenses',
-            message: 'Select which licenses are in use',
-            choices: ['Apache-2.0', 'GNU-GPLv3','ISC', 'MIT',  'MPL-2.0']
+            message: 'Select which license is in use',
+            choices: ['Apache-2.0', 'GNU-GPLv3','ISC', 'MIT',  'MPL-2.0', 'other'],
+            when: ({confirmLicense}) => confirmLicense
         },
     ])
-},
+
+
+};
+
+
+promptQuestions()
+    .then(writeFile)
