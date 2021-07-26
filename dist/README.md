@@ -1,9 +1,9 @@
 
 ![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)
-# A simple one
+# A good one
 ## Description
 ---
-a good discription
+It's amazing
 
 ## Table of Contents
 ---
@@ -16,13 +16,13 @@ a good discription
 
 ## Installation
 ---
-none
+whatever you want
 ## How to use
 ---
-No thanks
+I don't want to
 ## Tests
 ---
-I don't think so
+Too many to count
 ## License
 ---
 MIT
