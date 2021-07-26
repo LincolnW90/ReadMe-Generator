@@ -1,9 +1,9 @@
 
 ![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)
-# a;lskdfj
+# A simple one
 ## Description
 ---
-;aslkdfj
+a good discription
 
 ## Table of Contents
 ---
@@ -16,23 +16,23 @@
 
 ## Installation
 ---
-a;lksdfj
+none
 ## How to use
 ---
-a;lfsdkj
+No thanks
 ## Tests
 ---
-;asdlfkj
+I don't think so
 ## License
 ---
 MIT
 ## Contributors/technology
 ---
-undefined
+JaneD
 ### Questions
 ---
 Please direct any questions to...
 
-Github profile: ;alskdfj
+Github profile: JohnD
 
-Email: ;alskdfj
+Email: JohnD@gmail.com
